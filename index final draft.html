@@ -14,14 +14,48 @@
   <blockquote></blockquote>
   <input class="styled" type="button" value="Add to favorites" /> 
 <style>
-  body{
-display:flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
+  body
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Interactive World Map</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  }
-</style>
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <style>
+    body { margin:0; padding:0; }
+    #map { height: 100vh; }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
 
-  </html>
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script>
+    // Initialize the map
+    var map = L.map('map').setView([20, 0], 2);
+
+    // Add Carto Light tiles (free, won't block you)
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/">CARTO</a>',
+      subdomains: 'abcd',
+      maxZoom: 19
+    }).addTo(map);
+
+    // Example marker: Paris
+    L.marker([48.8566, 2.3522]).addTo(map)
+      .bindPopup('Paris, France')
+      .openPopup();
+
+    // Example marker: New York
+    L.marker([40.7128, -74.0060]).addTo(map)
+      .bindPopup('New York, USA');
+  </script>
+</body>
+</html>
+
+</html>
 	
